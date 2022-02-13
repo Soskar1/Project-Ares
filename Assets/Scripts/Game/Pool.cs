@@ -1,24 +1,28 @@
+using Core.Weapons;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Pool : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private Projectile _projectile;
-    public ObjectPool<Projectile> projectilePool;
-
-    private void Awake()
+    public class Pool : MonoBehaviour
     {
-        projectilePool = new ObjectPool<Projectile>(Create, OnGet, OnRelease, OnDestroyPoolObject, true, 100, 200);
-    }
+        [SerializeField] private Projectile _projectile;
+        public ObjectPool<Projectile> projectilePool;
 
-    private Projectile Create()
-    {
-        Projectile projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
-        projectile.transform.parent = transform;
-        return projectile;
-    }
+        private void Awake()
+        {
+            projectilePool = new ObjectPool<Projectile>(Create, OnGet, OnRelease, OnDestroyPoolObject, true, 100, 200);
+        }
 
-    private void OnGet(Projectile projectile) => projectile.gameObject.SetActive(true);
-    private void OnRelease(Projectile projectile) => projectile.gameObject.SetActive(false);
-    private void OnDestroyPoolObject(Projectile projectile) => Destroy(projectile.gameObject);
+        private Projectile Create()
+        {
+            Projectile projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
+            projectile.transform.parent = transform;
+            return projectile;
+        }
+
+        private void OnGet(Projectile projectile) => projectile.gameObject.SetActive(true);
+        private void OnRelease(Projectile projectile) => projectile.gameObject.SetActive(false);
+        private void OnDestroyPoolObject(Projectile projectile) => Destroy(projectile.gameObject);
+    }
 }

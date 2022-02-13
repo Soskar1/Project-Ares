@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IMovement
+namespace Core.Entities
 {
-    void Move(Vector2 direction);
+    public interface IMovement
+    {
+        void Move(Vector2 direction);
+    }
 }

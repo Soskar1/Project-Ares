@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class Enemy : Entity
+namespace Core.Entities
 {
-    private void FixedUpdate()
+    public class Enemy : Entity
     {
-        if (_movement != null)
-            _movement.Move(Vector2.left);
+        private void FixedUpdate()
+        {
+            if (_movement != null)
+                _movement.Move(Vector2.left);
+        }
     }
 }

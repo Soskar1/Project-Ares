@@ -1,16 +1,20 @@
+using Core.Weapons;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+namespace Core.Entities
 {
-    public Weapon weapon;
-    private bool _timerStarted = false;
-
-    private void Update()
+    public class Shooting : MonoBehaviour
     {
-        if (_timerStarted == true)
-            return;
+        public Weapon weapon;
+        private bool _timerStarted = false;
 
-        _timerStarted = true;
-        StartCoroutine(Timer.Start(weapon.maxTime, () => { weapon.Fire(); _timerStarted = false; }));
+        private void Update()
+        {
+            if (_timerStarted == true)
+                return;
+
+            _timerStarted = true;
+            StartCoroutine(Timer.Start(weapon.maxTime, () => { weapon.Fire(); _timerStarted = false; }));
+        }
     }
 }

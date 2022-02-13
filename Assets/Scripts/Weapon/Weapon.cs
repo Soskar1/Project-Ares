@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+namespace Core.Weapons
 {
-    [SerializeField] protected Pool _pool;
-    [SerializeField] protected Transform _shotPos;
-    public float maxTime;
+    public abstract class Weapon : MonoBehaviour
+    {
+        [SerializeField] protected Pool _pool;
+        [SerializeField] protected Transform _shotPos;
+        public float maxTime;
 
-    public abstract void Fire();
+        public abstract void Fire();
+    }
 }

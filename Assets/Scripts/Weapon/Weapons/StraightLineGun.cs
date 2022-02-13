@@ -1,9 +1,12 @@
-public class StraightLineGun : Weapon
+namespace Core.Weapons
 {
-    public override void Fire()
+    public class StraightLineGun : Weapon
     {
-        Projectile projectile = _pool.projectilePool.Get();
-        projectile.transform.position = _shotPos.position;
-        projectile.transform.rotation = _shotPos.rotation;
+        public override void Fire()
+        {
+            Projectile projectile = _pool.projectilePool.Get();
+            projectile.transform.position = _shotPos.position;
+            projectile.transform.rotation = _shotPos.rotation;
+        }
     }
 }
