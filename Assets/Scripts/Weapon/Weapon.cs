@@ -2,5 +2,9 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public abstract void Use();
+    [SerializeField] protected Pool _pool;
+    [SerializeField] protected Transform _shotPos;
+    public float maxTime;
+
+    public abstract void Fire();
 }
