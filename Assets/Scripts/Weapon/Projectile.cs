@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : Weapon
+public class Projectile : MonoBehaviour
 {
     [SerializeField] private Pool _pool;
     [SerializeField] private float _damage;
@@ -9,9 +9,4 @@ public class Projectile : Weapon
 
     private void OnEnable() => StartCoroutine(Timer.Start(_lifeTime, () => { _pool.projectilePool.Release(this); }));
     private void Update() => transform.Translate(Vector2.right * _speed * Time.deltaTime);
-
-    public override void Use()
-    {
-        
-    }
 }

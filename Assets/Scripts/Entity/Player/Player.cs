@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Input))]
 public class Player : Entity
 {
     [SerializeField] private Input _input;
