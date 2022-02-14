@@ -4,7 +4,7 @@ namespace Core.Weapons
     {
         public override void Fire()
         {
-            Projectile projectile = _pool.projectilePool.Get();
+            Bullet projectile = _pool.bulletPool.Get();
             projectile.transform.position = _shotPos.position;
             projectile.transform.rotation = _shotPos.rotation;
         }

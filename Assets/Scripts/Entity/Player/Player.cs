@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 namespace Core.Entities
 {
@@ -6,6 +7,18 @@ namespace Core.Entities
     public class Player : Entity
     {
         [SerializeField] private Input _input;
+
+        private void OnEnable()
+        {
+            _health.OnChangeHealth +=
+            //_health.OnDeath += 
+        }
+
+        private void OnDisable()
+        {
+            _health.OnChangeHealth -=
+            //_health.OnDeath -= 
+        }
 
         private void FixedUpdate()
         {
