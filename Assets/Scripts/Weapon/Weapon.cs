@@ -4,7 +4,7 @@ namespace Core.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
-        [SerializeField] protected BulletPool _pool;
+        [SerializeField] protected Bullet _bullet;
         [SerializeField] protected Transform _shotPos;
         public float maxTime;
 

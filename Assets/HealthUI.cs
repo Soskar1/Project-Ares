@@ -3,10 +3,10 @@ using TMPro;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _healthText;
+    //[SerializeField] private TextMeshProUGUI _healthText;
 
-    public void Update(float currentHealth)
-    {
+    //public void Update(float currentHealth)
+    //{
         
-    }
+    //}
 }

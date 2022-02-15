@@ -10,13 +10,13 @@ namespace Core.Entities
 
         private void OnEnable()
         {
-            _health.OnChangeHealth +=
+            //_health.OnChangeHealth +=
             //_health.OnDeath += 
         }
 
         private void OnDisable()
         {
-            _health.OnChangeHealth -=
+            //_health.OnChangeHealth -=
             //_health.OnDeath -= 
         }
 

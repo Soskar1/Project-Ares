@@ -4,12 +4,15 @@ namespace Core.Entities
 {
     public class Spawner : MonoBehaviour
     {
-        [SerializeField] private EnemyPool _pool;
         [SerializeField] private Vector2 _firstPoint;
         [SerializeField] private Vector2 _secondPoint;
         [SerializeField] private float _delay;
 
+        [SerializeField] private Enemy _enemy;
+
         private bool _timerStarted = false;
+        
+        private void Awake() => Pool<Enemy>.Create(_enemy); 
 
         private void Update()
         {
@@ -26,7 +29,7 @@ namespace Core.Entities
             float y = Random.Range(_firstPoint.y, _secondPoint.y);
             Vector2 spawnPoint = new Vector2(x, y);
 
-            Enemy enemy = _pool.enemyPool.Get();
+            Enemy enemy = Pool<Enemy>.pool.Get();
             enemy.transform.position = spawnPoint;
         }
 
