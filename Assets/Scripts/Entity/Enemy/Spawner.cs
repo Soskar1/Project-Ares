@@ -12,7 +12,7 @@ namespace Core.Entities
 
         private bool _timerStarted = false;
         
-        private void Awake() => Pool<Enemy>.Create(_enemy); 
+        private void Awake() => Pool<Entity>.Create(_enemy); 
 
         private void Update()
         {
@@ -29,7 +29,7 @@ namespace Core.Entities
             float y = Random.Range(_firstPoint.y, _secondPoint.y);
             Vector2 spawnPoint = new Vector2(x, y);
 
-            Enemy enemy = Pool<Enemy>.pool.Get();
+            Entity enemy = Pool<Entity>.pool.Get();
             enemy.transform.position = spawnPoint;
         }
 

@@ -13,6 +13,7 @@ namespace Core.Weapons
             Bullet projectile = Pool<Bullet>.pool.Get();
             projectile.transform.position = _shotPos.position;
             projectile.transform.rotation = _shotPos.rotation;
+            projectile.type = _bulletType;
         }
     }
 }
