@@ -8,7 +8,9 @@ namespace Core.Weapons
         [SerializeField] private float _damage;
         [SerializeField] private float _speed;
         [SerializeField] private float _lifeTime;
-        public BulletType type;
+        private BulletType _type;
+
+        public BulletType Type { set => _type = value; }
 
         private void OnEnable()
         {
@@ -29,8 +31,8 @@ namespace Core.Weapons
         {
             if (collision.TryGetComponent(out IHittable target))
             {
-                if (collision.GetComponent<Player>() != null && type == BulletType.Enemy ||
-                    collision.GetComponent<Enemy>() != null && type == BulletType.Ally)
+                if (collision.GetComponent<Player>() != null && _type == BulletType.Enemy ||
+                    collision.GetComponent<Enemy>() != null && _type == BulletType.Ally)
                 {
                     target.Hit(_damage);
                     Pool<Bullet>.pool.Release(this);

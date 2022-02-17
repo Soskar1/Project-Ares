@@ -11,10 +11,14 @@ namespace Core.Entities
         [SerializeField] private Enemy _enemy;
 
         private bool _timerStarted = false;
-        
-        private void Awake() => Pool<Entity>.Create(_enemy); 
 
-        private void Update()
+        private void Awake()
+        {
+            if (Pool<Entity>.pool == null)
+                Pool<Entity>.Create(_enemy);
+        }
+
+            private void Update()
         {
             if (_timerStarted == true)
                 return;
