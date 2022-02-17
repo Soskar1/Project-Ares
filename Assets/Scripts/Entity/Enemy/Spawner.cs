@@ -4,14 +4,21 @@ namespace Core.Entities
 {
     public class Spawner : MonoBehaviour
     {
-        [SerializeField] private EnemyPool _pool;
         [SerializeField] private Vector2 _firstPoint;
         [SerializeField] private Vector2 _secondPoint;
         [SerializeField] private float _delay;
 
+        [SerializeField] private Enemy _enemy;
+
         private bool _timerStarted = false;
 
-        private void Update()
+        private void Awake()
+        {
+            if (Pool<Entity>.pool == null)
+                Pool<Entity>.Create(_enemy);
+        }
+
+            private void Update()
         {
             if (_timerStarted == true)
                 return;
@@ -26,7 +33,7 @@ namespace Core.Entities
             float y = Random.Range(_firstPoint.y, _secondPoint.y);
             Vector2 spawnPoint = new Vector2(x, y);
 
-            Enemy enemy = _pool.enemyPool.Get();
+            Entity enemy = Pool<Entity>.pool.Get();
             enemy.transform.position = spawnPoint;
         }
 

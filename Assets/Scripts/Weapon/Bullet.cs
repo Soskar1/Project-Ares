@@ -1,24 +1,49 @@
+using Core.Entities;
 using UnityEngine;
 
 namespace Core.Weapons
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] private BulletPool _pool;
         [SerializeField] private float _damage;
         [SerializeField] private float _speed;
         [SerializeField] private float _lifeTime;
+        private BulletType _type;
 
-        private void OnEnable() => StartCoroutine(Timer.Start(_lifeTime, () => { _pool.bulletPool.Release(this); }));
+        public BulletType Type { set => _type = value; }
+
+        private void OnEnable()
+        {
+            if (Pool<Bullet>.pool != null)
+            {
+                StartCoroutine(Timer.Start(_lifeTime, () => { Pool<Bullet>.pool.Release(this); }));
+            }
+            else
+            {
+                Debug.LogWarning("Pool<Bullet>.pool не был найден, поэтому объект будет уничтожен!");
+                Destroy(gameObject, _lifeTime);
+            }
+        }
+
         private void Update() => transform.Translate(Vector2.right * _speed * Time.deltaTime);
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out IDamage target))
+            if (collision.TryGetComponent(out IHittable target))
             {
-                Debug.Log(collision.name);
-                target.OnHit(_damage);
+                if (collision.GetComponent<Player>() != null && _type == BulletType.Enemy ||
+                    collision.GetComponent<Enemy>() != null && _type == BulletType.Ally)
+                {
+                    target.Hit(_damage);
+                    Pool<Bullet>.pool.Release(this);
+                }
             }
         }
+    }
+
+    public enum BulletType
+    {
+        Ally,
+        Enemy
     }
 }
