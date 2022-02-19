@@ -9,7 +9,7 @@ namespace Core.Entities
         private float _currentHealth;
         private bool _isDead = false;
 
-        public float CurrentHealth { get => _currentHealth; }
+        public float MaxHealth => _maxHealth;
 
         public event Action<float> OnChangeHealth;
         public event Action OnDeath;

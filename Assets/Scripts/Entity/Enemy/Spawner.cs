@@ -8,17 +8,9 @@ namespace Core.Entities
         [SerializeField] private Vector2 _secondPoint;
         [SerializeField] private float _delay;
 
-        [SerializeField] private Enemy _enemy;
-
         private bool _timerStarted = false;
 
-        private void Awake()
-        {
-            if (Pool<Entity>.pool == null)
-                Pool<Entity>.Create(_enemy);
-        }
-
-            private void Update()
+        private void Update()
         {
             if (_timerStarted == true)
                 return;
@@ -29,12 +21,15 @@ namespace Core.Entities
 
         private void Spawn()
         {
+            BaseEnemy enemy = Pool<BaseEnemy>.pool.Get();
+            enemy.transform.position = TakeRandomPosition();
+        }
+
+        private Vector2 TakeRandomPosition()
+        {
             float x = Random.Range(_firstPoint.x, _secondPoint.x);
             float y = Random.Range(_firstPoint.y, _secondPoint.y);
-            Vector2 spawnPoint = new Vector2(x, y);
-
-            Entity enemy = Pool<Entity>.pool.Get();
-            enemy.transform.position = spawnPoint;
+            return new Vector2(x, y);
         }
 
         private void OnDrawGizmosSelected()

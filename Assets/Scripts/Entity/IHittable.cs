@@ -1,4 +1,7 @@
-public interface IHittable
+namespace Core.Entities
 {
-    void Hit(float damage);
+    public interface IHittable
+    {
+        void Hit(float damage);
+    }
 }

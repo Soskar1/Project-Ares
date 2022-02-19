@@ -4,21 +4,15 @@ namespace Core
 {
     public class Input : MonoBehaviour
     {
-        public Controls controls;
+        private Controls _controls;
+        public Controls Controls => _controls;
 
         private Vector2 _movementDirection;
-        private float _mouseWheel;
-
         public Vector2 MovementDirection { get => _movementDirection; }
-        public float MouseWheel { get => _mouseWheel; }
 
-        private void Awake() => controls = new Controls();
-        private void OnEnable() => controls.Enable();
-        private void OnDisable() => controls.Disable();
-        private void Update()
-        {
-            _movementDirection = controls.Player.Movement.ReadValue<Vector2>();
-            _mouseWheel = controls.Player.WeaponSwitch.ReadValue<float>();
-        }
+        private void Awake() => _controls = new Controls();
+        private void OnEnable() => _controls.Enable();
+        private void OnDisable() => _controls.Disable();
+        private void Update() => _movementDirection = _controls.Player.Movement.ReadValue<Vector2>();
     }
 }

@@ -11,7 +11,7 @@ namespace Core.UI
         public void Initialize(Health health)
         {
             health.OnChangeHealth += ChangeText;
-            ChangeText(health.CurrentHealth);
+            ChangeText(health.MaxHealth);
         }
 
         public void Disable(Health health) => health.OnChangeHealth -= ChangeText;
