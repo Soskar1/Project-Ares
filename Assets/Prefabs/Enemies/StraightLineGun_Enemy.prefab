@@ -188,7 +188,7 @@ MonoBehaviour:
   _bullet: {fileID: 2796205345419157226, guid: 0d0040e959548244cbe579b52ae742fc, type: 3}
   _bulletType: 1
   _shotPos: {fileID: 5218220224204164229}
-  maxTime: 1
+  delay: 0.5
 --- !u!1 &5218220225422416110
 GameObject:
   m_ObjectHideFlags: 0

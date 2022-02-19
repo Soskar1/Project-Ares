@@ -9,11 +9,19 @@ namespace Core
 
         public static void Create(T poolObject, bool collectionCheck = true, int defaultCapacity = 10, int maxSize = 1000)
         {
-            pool = new ObjectPool<T>(() => GameObject.Instantiate(poolObject),
-                actionOnGet => { actionOnGet.gameObject.SetActive(true); },
-                actionOnRelease => { actionOnRelease.gameObject.SetActive(false); },
-                actionOnDestroy => { Object.Destroy(actionOnDestroy.gameObject); },
+            pool = new ObjectPool<T>(() => CreateInPool(poolObject), Get, Release, DestroyPoolObject,
                 collectionCheck, defaultCapacity, maxSize);
         }
+
+        private static T CreateInPool(T poolObject)
+        {
+            return GameObject.Instantiate(poolObject);
+        }
+
+        private static void Get(T poolObject) => poolObject.gameObject.SetActive(true);
+
+        private static void Release(T poolObject) => poolObject.gameObject.SetActive(false);
+
+        private static void DestroyPoolObject(T poolObject) => Object.Destroy(poolObject.gameObject);
     }
 }

@@ -4,16 +4,17 @@ namespace Core.Weapons
     {
         private void Awake()
         {
-            if (Pool<Bullet>.pool == null)
-                Pool<Bullet>.Create(_bullet);
+            if (Pool<BaseBullet>.pool == null)
+                Pool<BaseBullet>.Create(_bullet);
         }
 
         public override void Fire()
         {
-            Bullet projectile = Pool<Bullet>.pool.Get();
-            projectile.transform.position = _shotPos.position;
-            projectile.transform.rotation = _shotPos.rotation;
-            projectile.Type = _bulletType;
+            BaseBullet bullet = Pool<BaseBullet>.pool.Get();
+            bullet.transform.position = _shotPos.position;
+            bullet.transform.rotation = _shotPos.rotation;
+
+            bullet.Shot(_bulletType);
         }
     }
 }

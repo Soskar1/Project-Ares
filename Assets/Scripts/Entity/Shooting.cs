@@ -14,7 +14,7 @@ namespace Core.Entities
                 return;
 
             _timerStarted = true;
-            StartCoroutine(Timer.Start(weapon.maxTime, () => { weapon.Fire(); _timerStarted = false; }));
+            StartCoroutine(Timer.Start(weapon.delay, () => { weapon.Fire(); _timerStarted = false; }));
         }
 
         private void OnDisable() => _timerStarted = false;

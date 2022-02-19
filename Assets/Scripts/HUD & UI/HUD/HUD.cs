@@ -1,14 +1,12 @@
 using Core.Entities;
 using UnityEngine;
 
-namespace Core.HUD
+namespace Core.UI
 {
     public class HUD : MonoBehaviour
     {
-        [SerializeField] private HealthHUD _healthHUD;
-        [SerializeField] private Health _health;
+        [SerializeField] private PlayerHealthHUD _playerHealthHUD;
 
-        private void Start() => _healthHUD.Initialize(_health);
-        private void OnDisable() => _healthHUD.Disable(_health);
+        public void Initialize(GameController controller) => _playerHealthHUD.Initialize(controller.Player.Health);
     }
 }

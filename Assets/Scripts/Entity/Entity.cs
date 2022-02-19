@@ -10,6 +10,8 @@ namespace Core.Entities
         [SerializeField] protected Health _health;
         [SerializeField] protected Shooting _shooting;
 
+        public Health Health { get => _health; }
+
         private void Awake() => _movement = GetComponent<IMovement>();
     }
 }

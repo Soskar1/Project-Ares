@@ -7,14 +7,14 @@ namespace Core.Entities
     {
         [SerializeField] private float _maxHealth;
         private float _currentHealth;
-        public float CurrentHealth { get => _currentHealth; }
+        private bool _isDead = false;
 
-        [SerializeField] private bool _inPool = true;
+        public float CurrentHealth { get => _currentHealth; }
 
         public event Action<float> OnChangeHealth;
         public event Action OnDeath;
 
-        private void OnEnable() => _currentHealth = _maxHealth;
+        private void OnEnable() => Reset();
 
         public void Hit(float damage)
         {
@@ -22,14 +22,22 @@ namespace Core.Entities
             OnChangeHealth?.Invoke(_currentHealth);
 
             if (_currentHealth <= 0)
-            {
-                OnDeath?.Invoke();
+                Death();
+        }
 
-                if (_inPool)
-                    Pool<Entity>.pool.Release(GetComponent<Entity>());
-                else
-                    Destroy(gameObject);
-            }
+        private void Death()
+        {
+            if (_isDead)
+                return;
+
+            _isDead = true;
+            OnDeath?.Invoke();
+        }
+
+        private void Reset()
+        {
+            _currentHealth = _maxHealth;
+            _isDead = false;
         }
     }
 }
