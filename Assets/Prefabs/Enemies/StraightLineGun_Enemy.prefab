@@ -131,7 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 5218220224836014990}
-  _shooting: {fileID: 5218220224836014989}
+  _layer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &5218220224836014990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 1
-  _inPool: 1
 --- !u!114 &5218220224836015025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8333d644d27af42a123b31b66c4615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 5218220224836014988}
+  _weapon: {fileID: 5218220224836014988}
+  _delay: 1
 --- !u!114 &5218220224836014988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +188,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 2796205345419157226, guid: 0d0040e959548244cbe579b52ae742fc, type: 3}
-  _bulletType: 1
+  _target:
+    serializedVersion: 2
+    m_Bits: 256
   _shotPos: {fileID: 5218220224204164229}
-  delay: 0.5
+  _damage: 1
+  _speed: 10
+  _lifeTime: 2.5
 --- !u!1 &5218220225422416110
 GameObject:
   m_ObjectHideFlags: 0

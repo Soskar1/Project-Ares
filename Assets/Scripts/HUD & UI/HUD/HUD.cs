@@ -1,4 +1,3 @@
-using Core.Entities;
 using UnityEngine;
 
 namespace Core.UI

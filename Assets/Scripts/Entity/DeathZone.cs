@@ -6,8 +6,8 @@ namespace Core.Entities
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Entity entity))
-                Pool<Entity>.pool.Release(entity);
+            if (collision.TryGetComponent(out BaseEnemy entity))
+                Pool<BaseEnemy>.pool.Release(entity);
         }
     }
 }
