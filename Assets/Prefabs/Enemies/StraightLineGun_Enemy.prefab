@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 5218220224836014990}
+  _shooting: {fileID: 5218220224836014989}
   _layer:
     serializedVersion: 2
     m_Bits: 128

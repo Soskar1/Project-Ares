@@ -4,11 +4,11 @@ namespace Core.Weapons
     {
         public override void Fire()
         {
-            BaseBullet bullet = Pool<BaseBullet>.pool.Get();
+            BaseBullet bullet = _bulletPool.GetObjectFromPool();
             bullet.transform.position = _shotPos.position;
             bullet.transform.rotation = _shotPos.rotation;
 
-            bullet.Shot(_bulletStats, _target);
+            bullet.Shot(_bulletPool, _bulletStats, _target);
         }
     }
 }

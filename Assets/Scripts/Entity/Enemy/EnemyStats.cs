@@ -1,4 +1,3 @@
-using Core.Weapons;
 using System;
 
 namespace Core.Entities

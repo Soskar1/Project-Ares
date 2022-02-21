@@ -20,6 +20,8 @@ namespace Core.Entities
 
         private void OnDisable() => _timerStarted = false;
 
+        public void Initialize(Pool<BaseBullet> bulletPool) => _weapon.Initialize(bulletPool);
+
         public void TakeWeapon(Weapon newWeapon) => _weapon = newWeapon;
     }
 }

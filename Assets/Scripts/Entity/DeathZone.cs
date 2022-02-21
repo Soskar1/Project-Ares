@@ -4,10 +4,14 @@ namespace Core.Entities
 {
     public class DeathZone : MonoBehaviour
     {
+        private Pool<BaseEnemy> pool;
+
+        public void Initialize(Pool<BaseEnemy> enemyPool) => pool = enemyPool;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent(out BaseEnemy entity))
-                Pool<BaseEnemy>.pool.Release(entity);
+                pool.ReleaseObject(entity);
         }
     }
 }

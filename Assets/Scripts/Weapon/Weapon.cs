@@ -10,6 +10,10 @@ namespace Core.Weapons
         [SerializeField] protected Transform _shotPos;
         [SerializeField] protected BulletStats _bulletStats;
 
+        protected Pool<BaseBullet> _bulletPool;
+
+        public void Initialize(Pool<BaseBullet> bulletPool) => _bulletPool = bulletPool;
+
         public abstract void Fire();
     }
 }

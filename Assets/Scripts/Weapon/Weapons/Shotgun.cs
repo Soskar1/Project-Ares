@@ -15,12 +15,12 @@ namespace Core.Weapons
 
         private void CreateBullet()
         {
-            BaseBullet bullet = Pool<BaseBullet>.pool.Get();
+            BaseBullet bullet = _bulletPool.GetObjectFromPool();
             bullet.transform.position = _shotPos.position;
             bullet.transform.rotation = _shotPos.rotation;
 
             float rotZ = Random.Range(-_spread, _spread);
-            bullet.Shot(_bulletStats, _target, rotZ);
+            bullet.Shot(_bulletPool, _bulletStats, _target, rotZ);
         }
     }
 }

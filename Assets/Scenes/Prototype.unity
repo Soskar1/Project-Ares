@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74fb0b36d90fe14fb44c2b1a3ff4220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemies: {fileID: 0}
+  _enemies: {fileID: 11400000, guid: 33f9c9718a393c143b23479860b45b43, type: 2}
   _firstPoint: {x: 9.92, y: 4.45}
   _secondPoint: {x: 12.38, y: -4.45}
   _delay: 2.5
@@ -749,6 +749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 982584686}
   _hud: {fileID: 280408197}
+  _spawner: {fileID: 954164876}
+  _deathZone: {fileID: 1980621482}
 --- !u!114 &982584686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1222121582}
+  _shooting: {fileID: 1222121581}
   _layer:
     serializedVersion: 2
     m_Bits: 256
