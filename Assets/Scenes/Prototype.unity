@@ -556,9 +556,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _shotPos: {fileID: 1642187917}
-  _damage: 1
-  _speed: 10
-  _lifeTime: 2.5
+  _bulletStats:
+    damage: 1
+    speed: 10
+    lifeTime: 2.5
 --- !u!4 &555478538
 Transform:
   m_ObjectHideFlags: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74fb0b36d90fe14fb44c2b1a3ff4220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemies: {fileID: 0}
   _firstPoint: {x: 9.92, y: 4.45}
   _secondPoint: {x: 12.38, y: -4.45}
   _delay: 2.5
@@ -1099,7 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8333d644d27af42a123b31b66c4615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 1507716359}
+  _weapon: {fileID: 555478537}
   _delay: 1
 --- !u!114 &1222121582
 MonoBehaviour:
@@ -1163,9 +1165,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _shotPos: {fileID: 1642187917}
-  _damage: 2
-  _speed: 15
-  _lifeTime: 0.35
+  _bulletStats:
+    damage: 0
+    speed: 0
+    lifeTime: 0
   _bulletCount: 5
   _spread: 25
 --- !u!1 &1544037423
@@ -1381,8 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878b59db46b01084cbed20cea2e3df5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapons:
-  - {fileID: 555478537}
+  _weapons: []
   _shooting: {fileID: 1222121581}
   _input: {fileID: 1222121575}
 --- !u!1 &1980621480

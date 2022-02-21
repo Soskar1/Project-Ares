@@ -5,10 +5,11 @@ namespace Core.Entities
     [RequireComponent(typeof(Health))]
     public abstract class Entity : MonoBehaviour
     {
-        protected IMovement _movement;
+        private IMovement _movement;
         [SerializeField] private Health _health;
         [SerializeField] private LayerMask _layer;
 
+        public IMovement Movement => _movement;
         public Health Health => _health;
         public LayerMask Layer => _layer;
 

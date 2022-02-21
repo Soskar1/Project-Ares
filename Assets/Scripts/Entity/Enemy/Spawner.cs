@@ -1,14 +1,23 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Core.Entities
 {
     public class Spawner : MonoBehaviour
     {
+        [SerializeField] private Enemies _enemies;
         [SerializeField] private Vector2 _firstPoint;
         [SerializeField] private Vector2 _secondPoint;
         [SerializeField] private float _delay;
+        private EnemyFactory _enemyFactory;
 
         private bool _timerStarted = false;
+
+        private void Awake()
+        {
+            _enemyFactory = new EnemyFactory();
+            //_enemyFactory.Initialize(_enemies, SceneManager.GetActiveScene().buildIndex);
+        }
 
         private void Update()
         {
@@ -21,7 +30,10 @@ namespace Core.Entities
 
         private void Spawn()
         {
-            BaseEnemy enemy = Pool<BaseEnemy>.pool.Get();
+            //BaseEnemy enemy = Pool<BaseEnemy>.pool.Get();
+            //enemy.transform.position = TakeRandomPosition();
+
+            BaseEnemy enemy = _enemyFactory.GetInstance();
             enemy.transform.position = TakeRandomPosition();
         }
 

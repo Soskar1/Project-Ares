@@ -10,13 +10,6 @@ namespace Core.Weapons
         [SerializeField] protected Transform _shotPos;
         [SerializeField] protected BulletStats _bulletStats;
 
-        [Header("Bullet Stats")]
-        [SerializeField] private float _damage;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _lifeTime;
-
-        private void Awake() => _bulletStats = new BulletStats(_damage, _speed, _lifeTime);
-
         public abstract void Fire();
     }
 }
