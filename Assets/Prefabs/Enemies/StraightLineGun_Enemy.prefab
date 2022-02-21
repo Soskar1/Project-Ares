@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 5218220224836014990}
+  _shooting: {fileID: 5218220224836014989}
   _layer:
     serializedVersion: 2
     m_Bits: 128
@@ -192,9 +193,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _shotPos: {fileID: 5218220224204164229}
-  _damage: 1
-  _speed: 10
-  _lifeTime: 2.5
+  _bulletStats:
+    damage: 1
+    speed: 10
+    lifeTime: 2.5
 --- !u!1 &5218220225422416110
 GameObject:
   m_ObjectHideFlags: 0

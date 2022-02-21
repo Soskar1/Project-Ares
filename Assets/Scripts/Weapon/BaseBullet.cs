@@ -9,15 +9,18 @@ namespace Core.Weapons
         [SerializeField] protected float _speed;
         [SerializeField] private float _lifeTime;
         private LayerMask _target;
+        private Pool<BaseBullet> _pool;
 
-        public virtual void Shot(BulletStats bulletStats, LayerMask target, float rotZ = 0)
+        public virtual void Shot(Pool<BaseBullet> bulletPool, BulletStats bulletStats, LayerMask target, float rotZ = 0)
         {
+            _pool = bulletPool;
+
             _damage = bulletStats.damage;
             _speed = bulletStats.speed;
             _lifeTime = bulletStats.lifeTime;
             _target = target;
 
-            StartCoroutine(Timer.Start(_lifeTime, () => { Pool<BaseBullet>.pool.Release(this); }));
+            StartCoroutine(Timer.Start(_lifeTime, () => { _pool.ReleaseObject(this); }));
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +31,7 @@ namespace Core.Weapons
                     return;
 
                 target.Hit(_damage);
-                Pool<BaseBullet>.pool.Release(this);
+                _pool.ReleaseObject(this);
             }
         }
     }

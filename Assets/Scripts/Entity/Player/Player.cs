@@ -9,8 +9,8 @@ namespace Core.Entities
 
         private void FixedUpdate()
         {
-            if (_movement != null)
-                _movement.Move(_input.MovementDirection);
+            if (Movement != null)
+                Movement.Move(_input.MovementDirection);
         }
     }
 }

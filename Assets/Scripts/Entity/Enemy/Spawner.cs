@@ -1,12 +1,18 @@
+using Core.Weapons;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Core.Entities
 {
     public class Spawner : MonoBehaviour
     {
+        [SerializeField] private Enemies _enemies;
         [SerializeField] private Vector2 _firstPoint;
         [SerializeField] private Vector2 _secondPoint;
         [SerializeField] private float _delay;
+        private EnemyFactory _enemyFactory;
+        private Pool<BaseEnemy> _enemyPool;
+        private Pool<BaseBullet> _bulletPool;
 
         private bool _timerStarted = false;
 
@@ -19,9 +25,20 @@ namespace Core.Entities
             StartCoroutine(Timer.Start(_delay, () => { Spawn(); _timerStarted = false; }));
         }
 
+        public void Initialize(Pool<BaseEnemy> enemyPool, Pool<BaseBullet> bulletPool)
+        {
+            _enemyFactory = new EnemyFactory();
+            _enemyFactory.Initialize(_enemies, SceneManager.GetActiveScene().buildIndex);
+
+            _enemyPool = enemyPool;
+            _bulletPool = bulletPool;
+        }
+
         private void Spawn()
         {
-            BaseEnemy enemy = Pool<BaseEnemy>.pool.Get();
+            EnemyStats stats = _enemyFactory.GetInstance(SceneManager.GetActiveScene().buildIndex);
+            BaseEnemy enemy = _enemyPool.GetObjectFromPool();
+            enemy.Initialize(stats, _enemyPool, _bulletPool);
             enemy.transform.position = TakeRandomPosition();
         }
 

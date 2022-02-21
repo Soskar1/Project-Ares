@@ -10,12 +10,9 @@ namespace Core.Weapons
         [SerializeField] protected Transform _shotPos;
         [SerializeField] protected BulletStats _bulletStats;
 
-        [Header("Bullet Stats")]
-        [SerializeField] private float _damage;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _lifeTime;
+        protected Pool<BaseBullet> _bulletPool;
 
-        private void Awake() => _bulletStats = new BulletStats(_damage, _speed, _lifeTime);
+        public void Initialize(Pool<BaseBullet> bulletPool) => _bulletPool = bulletPool;
 
         public abstract void Fire();
     }

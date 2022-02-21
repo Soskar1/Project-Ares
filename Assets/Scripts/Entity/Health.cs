@@ -9,7 +9,7 @@ namespace Core.Entities
         private float _currentHealth;
         private bool _isDead = false;
 
-        public float MaxHealth => _maxHealth;
+        public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; _currentHealth = _maxHealth; } }
 
         public event Action<float> OnChangeHealth;
         public event Action OnDeath;
