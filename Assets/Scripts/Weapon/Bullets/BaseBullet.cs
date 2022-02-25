@@ -3,25 +3,30 @@ using UnityEngine;
 
 namespace Core.Weapons
 {
-    public abstract class BaseBullet : MonoBehaviour
+    public abstract class BaseBullet : MonoBehaviour, IPooledObject
     {
-        private float _damage;
         protected float _speed;
+        private float _damage;
         private float _lifeTime;
         private LayerMask _target;
-        private BulletPool _pool;
-        public int ID;
 
-        public virtual void Shot(BulletPool bulletPool, BulletStats bulletStats, LayerMask target, float rotZ = 0)
+        private BulletPool _bulletPool;
+        protected EffectsPool _effectsPool;
+
+        [SerializeField] private int _poolID;
+        public int ID => _poolID;
+
+        public virtual void Shot(BulletPool bulletPool, EffectsPool effectsPool, BulletStats bulletStats, LayerMask target, float rotZ = 0)
         {
-            _pool = bulletPool;
+            _bulletPool = bulletPool;
+            _effectsPool = effectsPool;
 
             _damage = bulletStats.damage;
             _speed = bulletStats.speed;
             _lifeTime = bulletStats.lifeTime;
             _target = target;
 
-            StartCoroutine(Timer.Start(_lifeTime, () => { _pool.Release(this); }));
+            StartCoroutine(Timer.Start(_lifeTime, () => { _bulletPool.Release(this); }));
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +37,7 @@ namespace Core.Weapons
                     return;
 
                 target.Hit(_damage);
-                _pool.Release(this);
+                _bulletPool.Release(this);
             }
         }
     }

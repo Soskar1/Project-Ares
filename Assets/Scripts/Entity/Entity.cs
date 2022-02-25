@@ -1,4 +1,3 @@
-using Core.Weapons;
 using UnityEngine;
 
 namespace Core.Entities
@@ -10,7 +9,6 @@ namespace Core.Entities
         [SerializeField] private Health _health;
         [SerializeField] private Shooting _shooting;
         [SerializeField] private LayerMask _layer;
-        private BulletPool _bulletPool;
 
         public IMovement Movement => _movement;
         public Health Health => _health;
@@ -20,11 +18,7 @@ namespace Core.Entities
         private void OnEnable() => _health.OnDeath += Death;
         private void OnDisable() => _health.OnDeath -= Death;
 
-        public void Initialize(BulletPool bulletPool)
-        {
-            _bulletPool = bulletPool;
-            _shooting.Initialize(_bulletPool);
-        }
+        public void Initialize(BulletPool bulletPool, EffectsPool effectsPool) => _shooting.Initialize(bulletPool, effectsPool);
 
         public virtual void Death() => gameObject.SetActive(false);
     }

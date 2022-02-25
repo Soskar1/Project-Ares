@@ -20,7 +20,7 @@ namespace Core.Weapons
             bullet.transform.rotation = _shotPos.rotation;
 
             float rotZ = Random.Range(-_spread, _spread);
-            bullet.Shot(_bulletPool, _bulletStats, _target, rotZ);
+            bullet.Shot(_bulletPool, _effectsPool, _bulletStats, _target, rotZ);
         }
     }
 }

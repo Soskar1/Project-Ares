@@ -8,7 +8,7 @@ namespace Core.Weapons
             bullet.transform.position = _shotPos.position;
             bullet.transform.rotation = _shotPos.rotation;
 
-            bullet.Shot(_bulletPool, _bulletStats, _target);
+            bullet.Shot(_bulletPool, _effectsPool, _bulletStats, _target);
         }
     }
 }

@@ -1,4 +1,4 @@
-using Core.Weapons;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +6,17 @@ namespace Core.Entities
 {
     public class Spawner : MonoBehaviour
     {
+        [SerializeField] private List<BaseEnemy> _enemyList;
         [SerializeField] private Enemies _enemies;
         [SerializeField] private Vector2 _firstPoint;
         [SerializeField] private Vector2 _secondPoint;
         [SerializeField] private float _delay;
+
         private EnemyFactory _enemyFactory;
-        private Pool<BaseEnemy> _enemyPool;
+
+        private EnemyPool _enemyPool;
         private BulletPool _bulletPool;
+        private EffectsPool _effectsPool;
 
         private bool _timerStarted = false;
 
@@ -22,24 +26,25 @@ namespace Core.Entities
                 return;
 
             _timerStarted = true;
-            StartCoroutine(Timer.Start(_delay, () => { Spawn(); _timerStarted = false; }));
+            StartCoroutine(Timer.Start(_delay, () => { Spawn(TakeRandomEnemy()); _timerStarted = false; }));
         }
 
-        public void Initialize(Pool<BaseEnemy> enemyPool, BulletPool bulletPool)
+        public void Initialize(EnemyPool enemyPool, BulletPool bulletPool, EffectsPool effectsPool)
         {
             _enemyFactory = new EnemyFactory();
             _enemyFactory.Initialize(_enemies, SceneManager.GetActiveScene().buildIndex);
 
             _enemyPool = enemyPool;
             _bulletPool = bulletPool;
+            _effectsPool = effectsPool;
         }
 
-        private void Spawn()
+        private void Spawn(BaseEnemy enemy)
         {
             EnemyStats stats = _enemyFactory.GetInstance(SceneManager.GetActiveScene().buildIndex);
-            BaseEnemy enemy = _enemyPool.GetObjectFromPool();
-            enemy.Initialize(stats, _enemyPool, _bulletPool);
-            enemy.transform.position = TakeRandomPosition();
+            BaseEnemy enemyInstance = _enemyPool.Get(enemy);
+            enemyInstance.Initialize(stats, _enemyPool, _bulletPool, _effectsPool);
+            enemyInstance.transform.position = TakeRandomPosition();
         }
 
         private Vector2 TakeRandomPosition()
@@ -47,6 +52,12 @@ namespace Core.Entities
             float x = Random.Range(_firstPoint.x, _secondPoint.x);
             float y = Random.Range(_firstPoint.y, _secondPoint.y);
             return new Vector2(x, y);
+        }
+
+        private BaseEnemy TakeRandomEnemy()
+        {
+            int rng = Random.Range(0, _enemyList.Count);
+            return _enemyList[rng];
         }
 
         private void OnDrawGizmosSelected()

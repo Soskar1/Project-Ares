@@ -12,8 +12,14 @@ namespace Core.Weapons
         [SerializeField] private float _delay;
 
         protected BulletPool _bulletPool;
+        protected EffectsPool _effectsPool;
+
         public float Delay => _delay;
-        public void Initialize(BulletPool bulletPool) => _bulletPool = bulletPool;
+        public void Initialize(BulletPool bulletPool, EffectsPool effectsPool)
+        {
+            _bulletPool = bulletPool;
+            _effectsPool = effectsPool;
+        }
 
         public abstract void Fire();
     }
