@@ -1,20 +1,23 @@
-using Core.Weapons;
+using UnityEngine;
 
 namespace Core.Entities
 {
-    public abstract class BaseEnemy : Entity
+    public abstract class BaseEnemy : Entity, IPooledObject
     {
-        private Pool<BaseEnemy> _pool;
+        private EnemyPool _pool;
 
-        public void Initialize(EnemyStats stats, Pool<BaseEnemy> enemyPool, BulletPool bulletPool)
+        [SerializeField] private int _poolID;
+        public int ID => _poolID;
+
+        public void Initialize(EnemyStats stats, EnemyPool enemyPool, BulletPool bulletPool, EffectsPool effectsPool)
         {
             Health.MaxHealth = stats.maxHealth;
             Movement.Speed = stats.speed;
 
             _pool = enemyPool;
-            Initialize(bulletPool);
+            Initialize(bulletPool, effectsPool);
         }
 
-        public override void Death() => _pool.ReleaseObject(this);
+        public override void Death() => _pool.Release(this);
     }
 }

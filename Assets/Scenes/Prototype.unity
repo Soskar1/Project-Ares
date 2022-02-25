@@ -681,6 +681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74fb0b36d90fe14fb44c2b1a3ff4220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyList:
+  - {fileID: 5218220224836015026, guid: de8eda61cf4186a4ea4d3c1152f757b9, type: 3}
   _enemies: {fileID: 11400000, guid: 33f9c9718a393c143b23479860b45b43, type: 2}
   _firstPoint: {x: 9.92, y: 4.45}
   _secondPoint: {x: 12.38, y: -4.45}
