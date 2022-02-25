@@ -5,8 +5,9 @@ namespace Core.Entities
 {
     public class Shooting : MonoBehaviour
     {
-        [SerializeField] private Weapon _weapon;
-        [SerializeField] private float _delay;
+        [SerializeField] private Weapon _initWeapon;
+        private Weapon _currentWeapon;
+        private BulletPool _bulletPool;
         private bool _timerStarted = false;
 
         private void Update()
@@ -15,13 +16,21 @@ namespace Core.Entities
                 return;
 
             _timerStarted = true;
-            StartCoroutine(Timer.Start(_delay, () => { _weapon.Fire(); _timerStarted = false; }));
+            StartCoroutine(Timer.Start(_currentWeapon.Delay, () => { _currentWeapon.Fire(); _timerStarted = false; }));
         }
 
         private void OnDisable() => _timerStarted = false;
 
-        public void Initialize(Pool<BaseBullet> bulletPool) => _weapon.Initialize(bulletPool);
+        public void Initialize(BulletPool bulletPool)
+        {
+            _bulletPool = bulletPool;
+            TakeWeapon(_initWeapon);
+        }
 
-        public void TakeWeapon(Weapon newWeapon) => _weapon = newWeapon;
+        public void TakeWeapon(Weapon newWeapon)
+        {
+            _currentWeapon = newWeapon;
+            _currentWeapon.Initialize(_bulletPool);
+        }
     }
 }

@@ -9,10 +9,11 @@ namespace Core.Weapons
         [SerializeField] protected LayerMask _target;
         [SerializeField] protected Transform _shotPos;
         [SerializeField] protected BulletStats _bulletStats;
+        [SerializeField] private float _delay;
 
-        protected Pool<BaseBullet> _bulletPool;
-
-        public void Initialize(Pool<BaseBullet> bulletPool) => _bulletPool = bulletPool;
+        protected BulletPool _bulletPool;
+        public float Delay => _delay;
+        public void Initialize(BulletPool bulletPool) => _bulletPool = bulletPool;
 
         public abstract void Fire();
     }

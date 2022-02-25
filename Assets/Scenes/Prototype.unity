@@ -560,6 +560,7 @@ MonoBehaviour:
     damage: 1
     speed: 10
     lifeTime: 2.5
+  _delay: 1
 --- !u!4 &555478538
 Transform:
   m_ObjectHideFlags: 0
@@ -960,6 +961,60 @@ Transform:
   m_Father: {fileID: 1544037426}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1171861393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171861394}
+  - component: {fileID: 1171861395}
+  m_Layer: 8
+  m_Name: RocketLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1171861394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171861393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1771227409}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1171861395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171861393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fc9d96423118545b8cb82ba6501a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 2437235712012552025, guid: db846ff17685979419b56225d860e01c, type: 3}
+  _target:
+    serializedVersion: 2
+    m_Bits: 128
+  _shotPos: {fileID: 1642187917}
+  _bulletStats:
+    damage: 5
+    speed: 10
+    lifeTime: 2
+  _delay: 2
 --- !u!1 &1222121573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,8 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8333d644d27af42a123b31b66c4615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 555478537}
-  _delay: 1
+  _initWeapon: {fileID: 555478537}
 --- !u!114 &1222121582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,9 +1223,10 @@ MonoBehaviour:
     m_Bits: 128
   _shotPos: {fileID: 1642187917}
   _bulletStats:
-    damage: 0
-    speed: 0
-    lifeTime: 0
+    damage: 1
+    speed: 10
+    lifeTime: 0.5
+  _delay: 1.25
   _bulletCount: 5
   _spread: 25
 --- !u!1 &1544037423
@@ -1372,6 +1427,7 @@ Transform:
   m_Children:
   - {fileID: 555478538}
   - {fileID: 1507716358}
+  - {fileID: 1171861394}
   m_Father: {fileID: 1222121574}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1387,7 +1443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878b59db46b01084cbed20cea2e3df5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapons: []
+  _weapons:
+  - {fileID: 555478537}
+  - {fileID: 1507716359}
+  - {fileID: 1171861395}
   _shooting: {fileID: 1222121581}
   _input: {fileID: 1222121575}
 --- !u!1 &1980621480

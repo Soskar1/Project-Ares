@@ -10,17 +10,8 @@ namespace Core.Weapons
         [SerializeField] private Shooting _shooting;
         [SerializeField] private Input _input;
 
-        //private void Update()
-        //{
-        //    if (_input.MouseWheel > 0)
-        //    {
-        //        Weapon activeWeapon = _shooting.weapon;
-
-        //    }
-        //    else if (_input.MouseWheel < 0)
-        //    {
-
-        //    }
-        //}
+        private void OnEnable() => _input.OnWeaponSwitch += SwitchWeapon;
+        private void OnDisable() => _input.OnWeaponSwitch -= SwitchWeapon;
+        private void SwitchWeapon(int weaponId) => _shooting.TakeWeapon(_weapons[weaponId]);
     }
 }

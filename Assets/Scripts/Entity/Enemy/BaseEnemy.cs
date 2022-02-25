@@ -6,7 +6,7 @@ namespace Core.Entities
     {
         private Pool<BaseEnemy> _pool;
 
-        public void Initialize(EnemyStats stats, Pool<BaseEnemy> enemyPool, Pool<BaseBullet> bulletPool)
+        public void Initialize(EnemyStats stats, Pool<BaseEnemy> enemyPool, BulletPool bulletPool)
         {
             Health.MaxHealth = stats.maxHealth;
             Movement.Speed = stats.speed;

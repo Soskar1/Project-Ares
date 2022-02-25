@@ -12,7 +12,7 @@ namespace Core.Entities
         [SerializeField] private float _delay;
         private EnemyFactory _enemyFactory;
         private Pool<BaseEnemy> _enemyPool;
-        private Pool<BaseBullet> _bulletPool;
+        private BulletPool _bulletPool;
 
         private bool _timerStarted = false;
 
@@ -25,7 +25,7 @@ namespace Core.Entities
             StartCoroutine(Timer.Start(_delay, () => { Spawn(); _timerStarted = false; }));
         }
 
-        public void Initialize(Pool<BaseEnemy> enemyPool, Pool<BaseBullet> bulletPool)
+        public void Initialize(Pool<BaseEnemy> enemyPool, BulletPool bulletPool)
         {
             _enemyFactory = new EnemyFactory();
             _enemyFactory.Initialize(_enemies, SceneManager.GetActiveScene().buildIndex);

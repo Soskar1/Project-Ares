@@ -13,7 +13,8 @@ namespace Core
         [SerializeField] private DeathZone _deathZone;
 
         private Pool<BaseEnemy> _enemyPool;
-        private Pool<BaseBullet> _bulletPool;
+        //private Pool<BaseBullet> _bulletPool;
+        private BulletPool _bulletPool;
 
         private void Awake()
         {
@@ -24,7 +25,7 @@ namespace Core
             Physics2D.IgnoreLayerCollision(6,7);
 
             _enemyPool = new Pool<BaseEnemy>();
-            _bulletPool = new Pool<BaseBullet>();
+            //bulletPool = new Pool<BaseBullet>();
         }
 
         private void Start()
@@ -32,15 +33,16 @@ namespace Core
             _hud.Initialize(_controller);
 
             _enemyPool.Initialize(_controller.Enemy, true, 25, 50);
-            _bulletPool.Initialize(_controller.Bullet, true, 100, 150);
+            //_bulletPool.Initialize(_controller.Bullet, true, 100, 150);
+            _bulletPool = new BulletPool();
 
-            _spawner.Initialize(_enemyPool, _bulletPool);
+            //_spawner.Initialize(_enemyPool, _bulletPool);
             _deathZone.Initialize(_enemyPool);
 
             _controller.Player.Initialize(_bulletPool);
 
             _controller.Player.gameObject.SetActive(true);
-            _controller.Spawner.gameObject.SetActive(true);
+            //_controller.Spawner.gameObject.SetActive(true);
         }
     }
 }

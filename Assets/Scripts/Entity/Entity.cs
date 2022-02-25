@@ -10,7 +10,7 @@ namespace Core.Entities
         [SerializeField] private Health _health;
         [SerializeField] private Shooting _shooting;
         [SerializeField] private LayerMask _layer;
-        private Pool<BaseBullet> _bulletPool;
+        private BulletPool _bulletPool;
 
         public IMovement Movement => _movement;
         public Health Health => _health;
@@ -20,7 +20,7 @@ namespace Core.Entities
         private void OnEnable() => _health.OnDeath += Death;
         private void OnDisable() => _health.OnDeath -= Death;
 
-        public void Initialize(Pool<BaseBullet> bulletPool)
+        public void Initialize(BulletPool bulletPool)
         {
             _bulletPool = bulletPool;
             _shooting.Initialize(_bulletPool);

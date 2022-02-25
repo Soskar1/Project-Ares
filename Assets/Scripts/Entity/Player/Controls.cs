@@ -37,11 +37,29 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Weapon Switch"",
-                    ""type"": ""Value"",
+                    ""name"": ""StraightLineGun"",
+                    ""type"": ""Button"",
                     ""id"": ""fc62d1a5-8ad5-47a3-ac2a-8a970e3eb813"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""Scale"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shotgun"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e255a18-662f-4369-b3df-17b149a65bd6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RocketLauncher"",
+                    ""type"": ""Button"",
+                    ""id"": ""319641fc-b5fb-4e1b-916f-cec115858bc8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""Scale(factor=3)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 }
@@ -104,12 +122,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c4aa8773-f119-4763-835e-1cc0aaa033b2"",
-                    ""path"": ""<Mouse>/scroll/y"",
+                    ""id"": ""bd7f5457-a05e-48fe-87e7-c42af7ee645a"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Weapon Switch"",
+                    ""action"": ""StraightLineGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39159392-d237-4f69-bc3e-ae5a377d4d50"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Shotgun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64deca22-cf64-478d-bd40-88262f3ce002"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""RocketLauncher"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -138,7 +178,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_WeaponSwitch = m_Player.FindAction("Weapon Switch", throwIfNotFound: true);
+        m_Player_StraightLineGun = m_Player.FindAction("StraightLineGun", throwIfNotFound: true);
+        m_Player_Shotgun = m_Player.FindAction("Shotgun", throwIfNotFound: true);
+        m_Player_RocketLauncher = m_Player.FindAction("RocketLauncher", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -199,13 +241,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_WeaponSwitch;
+    private readonly InputAction m_Player_StraightLineGun;
+    private readonly InputAction m_Player_Shotgun;
+    private readonly InputAction m_Player_RocketLauncher;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @WeaponSwitch => m_Wrapper.m_Player_WeaponSwitch;
+        public InputAction @StraightLineGun => m_Wrapper.m_Player_StraightLineGun;
+        public InputAction @Shotgun => m_Wrapper.m_Player_Shotgun;
+        public InputAction @RocketLauncher => m_Wrapper.m_Player_RocketLauncher;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -218,9 +264,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @WeaponSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitch;
-                @WeaponSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitch;
-                @WeaponSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitch;
+                @StraightLineGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStraightLineGun;
+                @StraightLineGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStraightLineGun;
+                @StraightLineGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStraightLineGun;
+                @Shotgun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShotgun;
+                @Shotgun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShotgun;
+                @Shotgun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShotgun;
+                @RocketLauncher.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRocketLauncher;
+                @RocketLauncher.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRocketLauncher;
+                @RocketLauncher.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRocketLauncher;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -228,9 +280,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @WeaponSwitch.started += instance.OnWeaponSwitch;
-                @WeaponSwitch.performed += instance.OnWeaponSwitch;
-                @WeaponSwitch.canceled += instance.OnWeaponSwitch;
+                @StraightLineGun.started += instance.OnStraightLineGun;
+                @StraightLineGun.performed += instance.OnStraightLineGun;
+                @StraightLineGun.canceled += instance.OnStraightLineGun;
+                @Shotgun.started += instance.OnShotgun;
+                @Shotgun.performed += instance.OnShotgun;
+                @Shotgun.canceled += instance.OnShotgun;
+                @RocketLauncher.started += instance.OnRocketLauncher;
+                @RocketLauncher.performed += instance.OnRocketLauncher;
+                @RocketLauncher.canceled += instance.OnRocketLauncher;
             }
         }
     }
@@ -247,6 +305,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnWeaponSwitch(InputAction.CallbackContext context);
+        void OnStraightLineGun(InputAction.CallbackContext context);
+        void OnShotgun(InputAction.CallbackContext context);
+        void OnRocketLauncher(InputAction.CallbackContext context);
     }
 }

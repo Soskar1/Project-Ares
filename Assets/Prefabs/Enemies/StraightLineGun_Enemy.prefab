@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 5218220224836014988}
-  _delay: 1
 --- !u!114 &5218220224836014988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +196,7 @@ MonoBehaviour:
     damage: 1
     speed: 10
     lifeTime: 2.5
+  _delay: 1
 --- !u!1 &5218220225422416110
 GameObject:
   m_ObjectHideFlags: 0

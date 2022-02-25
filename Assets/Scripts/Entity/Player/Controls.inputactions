@@ -15,11 +15,29 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Weapon Switch",
-                    "type": "Value",
+                    "name": "StraightLineGun",
+                    "type": "Button",
                     "id": "fc62d1a5-8ad5-47a3-ac2a-8a970e3eb813",
-                    "expectedControlType": "Axis",
-                    "processors": "",
+                    "expectedControlType": "Button",
+                    "processors": "Scale",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shotgun",
+                    "type": "Button",
+                    "id": "9e255a18-662f-4369-b3df-17b149a65bd6",
+                    "expectedControlType": "Button",
+                    "processors": "Scale(factor=2)",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RocketLauncher",
+                    "type": "Button",
+                    "id": "319641fc-b5fb-4e1b-916f-cec115858bc8",
+                    "expectedControlType": "Button",
+                    "processors": "Scale(factor=3)",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -82,12 +100,34 @@
                 },
                 {
                     "name": "",
-                    "id": "c4aa8773-f119-4763-835e-1cc0aaa033b2",
-                    "path": "<Mouse>/scroll/y",
+                    "id": "bd7f5457-a05e-48fe-87e7-c42af7ee645a",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Weapon Switch",
+                    "action": "StraightLineGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39159392-d237-4f69-bc3e-ae5a377d4d50",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Shotgun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64deca22-cf64-478d-bd40-88262f3ce002",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "RocketLauncher",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
