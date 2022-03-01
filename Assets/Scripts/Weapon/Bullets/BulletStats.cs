@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Core.Weapons
 {
@@ -8,5 +9,6 @@ namespace Core.Weapons
         public float damage;
         public float speed;
         public float lifeTime;
+        public Color color;
     }
 }

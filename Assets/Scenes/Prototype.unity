@@ -560,6 +560,7 @@ MonoBehaviour:
     damage: 1
     speed: 10
     lifeTime: 2.5
+    color: {r: 1, g: 0.2578057, b: 0, a: 1}
   _delay: 1
 --- !u!4 &555478538
 Transform:
@@ -1016,6 +1017,7 @@ MonoBehaviour:
     damage: 5
     speed: 10
     lifeTime: 2
+    color: {r: 1, g: 0.25882354, b: 0, a: 1}
   _delay: 2
 --- !u!1 &1222121573
 GameObject:
@@ -1228,6 +1230,7 @@ MonoBehaviour:
     damage: 1
     speed: 10
     lifeTime: 0.5
+    color: {r: 1, g: 0.25882354, b: 0, a: 1}
   _delay: 1.25
   _bulletCount: 5
   _spread: 25

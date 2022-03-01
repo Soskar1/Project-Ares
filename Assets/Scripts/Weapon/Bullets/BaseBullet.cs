@@ -13,6 +13,7 @@ namespace Core.Weapons
         private BulletPool _bulletPool;
         protected EffectsPool _effectsPool;
 
+        [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private int _poolID;
         public int ID => _poolID;
 
@@ -24,6 +25,7 @@ namespace Core.Weapons
             _damage = bulletStats.damage;
             _speed = bulletStats.speed;
             _lifeTime = bulletStats.lifeTime;
+            _renderer.color = bulletStats.color;
             _target = target;
 
             StartCoroutine(Timer.Start(_lifeTime, () => { _bulletPool.Release(this); }));
