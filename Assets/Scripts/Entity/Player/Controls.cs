@@ -62,6 +62,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=3)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ChangeWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""98cba356-60a2-4a09-b338-a0afb126e819"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""RocketLauncher"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83c7ee6a-42fb-4259-80ac-7703c4852f99"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Press"",
+                    ""processors"": ""Scale(factor=0)"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2b2fd21-76ed-4925-a80c-96cf094f31da"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Press"",
+                    ""processors"": ""Scale"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53e47863-10dc-488e-a3d6-7e53af73a932"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": ""Press"",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -181,6 +223,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_StraightLineGun = m_Player.FindAction("StraightLineGun", throwIfNotFound: true);
         m_Player_Shotgun = m_Player.FindAction("Shotgun", throwIfNotFound: true);
         m_Player_RocketLauncher = m_Player.FindAction("RocketLauncher", throwIfNotFound: true);
+        m_Player_ChangeWeapon = m_Player.FindAction("ChangeWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -244,6 +287,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_StraightLineGun;
     private readonly InputAction m_Player_Shotgun;
     private readonly InputAction m_Player_RocketLauncher;
+    private readonly InputAction m_Player_ChangeWeapon;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -252,6 +296,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @StraightLineGun => m_Wrapper.m_Player_StraightLineGun;
         public InputAction @Shotgun => m_Wrapper.m_Player_Shotgun;
         public InputAction @RocketLauncher => m_Wrapper.m_Player_RocketLauncher;
+        public InputAction @ChangeWeapon => m_Wrapper.m_Player_ChangeWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -273,6 +318,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RocketLauncher.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRocketLauncher;
                 @RocketLauncher.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRocketLauncher;
                 @RocketLauncher.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRocketLauncher;
+                @ChangeWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeapon;
+                @ChangeWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeapon;
+                @ChangeWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -289,6 +337,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RocketLauncher.started += instance.OnRocketLauncher;
                 @RocketLauncher.performed += instance.OnRocketLauncher;
                 @RocketLauncher.canceled += instance.OnRocketLauncher;
+                @ChangeWeapon.started += instance.OnChangeWeapon;
+                @ChangeWeapon.performed += instance.OnChangeWeapon;
+                @ChangeWeapon.canceled += instance.OnChangeWeapon;
             }
         }
     }
@@ -308,5 +359,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnStraightLineGun(InputAction.CallbackContext context);
         void OnShotgun(InputAction.CallbackContext context);
         void OnRocketLauncher(InputAction.CallbackContext context);
+        void OnChangeWeapon(InputAction.CallbackContext context);
     }
 }

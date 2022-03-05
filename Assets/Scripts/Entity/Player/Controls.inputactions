@@ -40,6 +40,15 @@
                     "processors": "Scale(factor=3)",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ChangeWeapon",
+                    "type": "Button",
+                    "id": "98cba356-60a2-4a09-b338-a0afb126e819",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +137,39 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "RocketLauncher",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83c7ee6a-42fb-4259-80ac-7703c4852f99",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Press",
+                    "processors": "Scale(factor=0)",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ChangeWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2b2fd21-76ed-4925-a80c-96cf094f31da",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Press",
+                    "processors": "Scale",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ChangeWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53e47863-10dc-488e-a3d6-7e53af73a932",
+                    "path": "<Keyboard>/3",
+                    "interactions": "Press",
+                    "processors": "Scale(factor=2)",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ChangeWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

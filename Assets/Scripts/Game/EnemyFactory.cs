@@ -1,22 +1,24 @@
+using System;
 using System.Collections.Generic;
 
 namespace Core.Entities
 {
     public class EnemyFactory
     {
-        private Dictionary<int, EnemyStats> _factory;
+        private Dictionary<int, Func<int, EnemyStats>> _factory;
 
         public void Initialize(Enemies enemies, int level)
         {
-            _factory = new Dictionary<int, EnemyStats>()
+            _factory = new Dictionary<int, Func<int, EnemyStats>>()
             {
-                {level, enemies.EnemyList[level]}
+                {0, (level) => enemies.StraightLineEnemies[level]},
+                {1, (level) => enemies.Caravan[level] }
             };
         }
 
-        public EnemyStats GetInstance(int level)
+        public EnemyStats GetInstance(int enemyID, int level)
         {
-            return _factory[level];
+            return _factory[enemyID](level);
         }
     }
 }

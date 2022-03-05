@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796a333f9071e6e468b3c4e09ed19568, type: 3}
   m_Name: Enemies
   m_EditorClassIdentifier: 
-  _enemyList:
+  _straightLineEnemies:
   - maxHealth: 1
-    speed: 175
+    speed: 125
+  _caravan:
+  - maxHealth: 3
+    speed: 50

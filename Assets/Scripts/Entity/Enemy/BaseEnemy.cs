@@ -6,8 +6,10 @@ namespace Core.Entities
     {
         private EnemyPool _pool;
 
+        [Range(0, 100)][SerializeField] private float _spawnFrequency;
         [SerializeField] private int _poolID;
         public int ID => _poolID;
+        public float SpawnFrequency => _spawnFrequency;
 
         public void Initialize(EnemyStats stats, EnemyPool enemyPool, BulletPool bulletPool, EffectsPool effectsPool)
         {

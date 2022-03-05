@@ -26,7 +26,7 @@ namespace Core.Entities
                 return;
 
             _timerStarted = true;
-            StartCoroutine(Timer.Start(_delay, () => { Spawn(TakeRandomEnemy()); _timerStarted = false; }));
+            StartCoroutine(Timer.Start(_delay, () => { Spawn(TakeEnemy()); _timerStarted = false; }));
         }
 
         public void Initialize(EnemyPool enemyPool, BulletPool bulletPool, EffectsPool effectsPool)
@@ -41,7 +41,7 @@ namespace Core.Entities
 
         private void Spawn(BaseEnemy enemy)
         {
-            EnemyStats stats = _enemyFactory.GetInstance(SceneManager.GetActiveScene().buildIndex);
+            EnemyStats stats = _enemyFactory.GetInstance(enemy.ID, SceneManager.GetActiveScene().buildIndex);
             BaseEnemy enemyInstance = _enemyPool.Get(enemy);
             enemyInstance.Initialize(stats, _enemyPool, _bulletPool, _effectsPool);
             enemyInstance.transform.position = TakeRandomPosition();
@@ -54,10 +54,22 @@ namespace Core.Entities
             return new Vector2(x, y);
         }
 
-        private BaseEnemy TakeRandomEnemy()
+        private BaseEnemy TakeEnemy()
         {
-            int rng = Random.Range(0, _enemyList.Count);
-            return _enemyList[rng];
+            BaseEnemy rngEnemy = _enemyList[0];
+
+            float rng = Random.Range(0, 100);
+            Debug.Log(rng);
+            foreach (BaseEnemy enemy in _enemyList)
+            {
+                if (rng <= enemy.SpawnFrequency)
+                {
+                    rngEnemy = enemy;
+                    Debug.Log(rngEnemy.name);
+                }
+            }
+
+            return rngEnemy;
         }
 
         private void OnDrawGizmosSelected()

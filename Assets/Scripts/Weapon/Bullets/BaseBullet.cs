@@ -13,6 +13,7 @@ namespace Core.Weapons
         private BulletPool _bulletPool;
         protected EffectsPool _effectsPool;
 
+        [SerializeField] private TrailRenderer _trailRenderer;
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private int _poolID;
         public int ID => _poolID;
@@ -42,5 +43,7 @@ namespace Core.Weapons
                 _bulletPool.Release(this);
             }
         }
+
+        public void ResetTrail() => _trailRenderer.Clear();
     }
 }

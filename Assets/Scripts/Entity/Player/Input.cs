@@ -20,25 +20,18 @@ namespace Core
         {
             _controls.Enable();
 
-            _controls.Player.StraightLineGun.performed += FirstWeapon;
-            _controls.Player.Shotgun.performed += SecondWeapon;
-            _controls.Player.RocketLauncher.performed += ThirdWeapon;
+            _controls.Player.ChangeWeapon.performed += ChangeWeapon;
         }
 
         private void OnDisable()
         {
             _controls.Disable();
 
-            _controls.Player.StraightLineGun.performed -= FirstWeapon;
-            _controls.Player.Shotgun.performed -= SecondWeapon;
-            _controls.Player.RocketLauncher.performed -= ThirdWeapon;
+            _controls.Player.ChangeWeapon.performed -= ChangeWeapon;
         }
 
         private void Update() => _movementDirection = _controls.Player.Movement.ReadValue<Vector2>();
 
-        private void FirstWeapon(InputAction.CallbackContext obj) => OnWeaponSwitch?.Invoke(0);
-        private void SecondWeapon(InputAction.CallbackContext obj) => OnWeaponSwitch?.Invoke(1);
-        private void ThirdWeapon(InputAction.CallbackContext obj) => OnWeaponSwitch?.Invoke(2);
-
+        private void ChangeWeapon(InputAction.CallbackContext ctx) => OnWeaponSwitch?.Invoke((int)ctx.ReadValue<float>());
     }
 }

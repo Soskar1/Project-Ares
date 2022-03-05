@@ -15,7 +15,12 @@ namespace Core
             return instance;
         }
 
-        private void GetObjectFromPool(BaseBullet obj) => obj.gameObject.SetActive(true);
+        private void GetObjectFromPool(BaseBullet obj)
+        {
+            obj.ResetTrail();
+            obj.gameObject.SetActive(true);
+        }
+
         private void ReleaseObject(BaseBullet obj) => obj.gameObject.SetActive(false);
         private void DestroyObject(BaseBullet obj) => Object.Destroy(obj.gameObject);
 
