@@ -13,6 +13,8 @@ namespace Core.Entities
 
         private bool _timerStarted = false;
 
+        public Weapon CurrentWeapon => _currentWeapon;
+
         private void Update()
         {
             if (_timerStarted == true)

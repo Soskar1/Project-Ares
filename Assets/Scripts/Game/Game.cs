@@ -15,13 +15,13 @@ namespace Core
         private BulletPool _bulletPool;
         private EffectsPool _effectsPool;
 
+        //Позже удалить!
+        [SerializeField] private bool _activateSpawner = true;
+
         private void Awake()
         {
             Application.targetFrameRate = 60;
             Screen.SetResolution(1920, 1080, true);
-
-            //Invisible Wall & Enemy
-            Physics2D.IgnoreLayerCollision(6,7);
         }
 
         private void Start()
@@ -38,7 +38,9 @@ namespace Core
             _controller.Player.Initialize(_bulletPool, _effectsPool);
 
             _controller.Player.gameObject.SetActive(true);
-            _controller.Spawner.gameObject.SetActive(true);
+
+            if(_activateSpawner)
+                _controller.Spawner.gameObject.SetActive(true);
         }
     }
 }

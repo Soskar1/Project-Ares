@@ -6,6 +6,6 @@ namespace Core.Effects
     {
         [SerializeField] private float _lifeTime;
 
-        private void Awake() => StartCoroutine(Timer.Start(_lifeTime, () => _pool.Release(this)));
+        private void OnEnable() => StartCoroutine(Timer.Start(_lifeTime, () => _pool.Release(this)));
     }
 }

@@ -39,6 +39,10 @@ namespace Core.Weapons
                 if (collision.GetComponent<Entity>().Layer != _target)
                     return;
 
+                if (collision.TryGetComponent(out Invulnerability invulnerability))
+                    if (invulnerability.invulnerable)
+                        return;
+
                 target.Hit(_damage);
                 _bulletPool.Release(this);
             }

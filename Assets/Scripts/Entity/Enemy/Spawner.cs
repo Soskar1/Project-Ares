@@ -59,15 +59,9 @@ namespace Core.Entities
             BaseEnemy rngEnemy = _enemyList[0];
 
             float rng = Random.Range(0, 100);
-            Debug.Log(rng);
             foreach (BaseEnemy enemy in _enemyList)
-            {
                 if (rng <= enemy.SpawnFrequency)
-                {
                     rngEnemy = enemy;
-                    Debug.Log(rngEnemy.name);
-                }
-            }
 
             return rngEnemy;
         }
