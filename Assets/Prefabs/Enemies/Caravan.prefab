@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 5218220224836015025}
   - component: {fileID: 5218220224836014989}
   - component: {fileID: 5218220224836014988}
+  - component: {fileID: 7028428947568061637}
   m_Layer: 7
   m_Name: Caravan
   m_TagString: Untagged
@@ -250,7 +251,7 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 128
-  _spawnFrequency: 5
+  _spawnFrequency: 25
   _poolID: 1
 --- !u!114 &5218220224836014990
 MonoBehaviour:
@@ -330,6 +331,19 @@ MonoBehaviour:
   - {fileID: 6861319559674579430}
   - {fileID: 2928308951543553164}
   - {fileID: 3722669064919303375}
+--- !u!114 &7028428947568061637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218220224836015031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6dbed738a0ef34ea4d95400ae378ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collectible: {fileID: 5833022666297479223, guid: 26b1fff3666499a46a085bead78183ce, type: 3}
 --- !u!1 &5218220225422416110
 GameObject:
   m_ObjectHideFlags: 0
